@@ -1,23 +1,25 @@
 import React, { Component } from "react";
 import MovieRow from "./MovieRow";
+import TableHeader from "./common/tableHeader";
 class MovieTable extends Component {
   state = {};
-  handleSort = path => {
-    const sortColumn = { ...this.props.sortColumn };
-    if (sortColumn.path === path) {
-      sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
-    } else {
-      sortColumn.path = path;
-      sortColumn.order = "asc";
-    }
 
-    this.props.handleSort(sortColumn);
-  };
   render() {
+    const columns = [
+      { path: "title", title: "title" },
+      { path: "genre._id", title: "Genre" },
+      { path: "numberInstock", title: "Stock" },
+      { path: "dailyRentalRate", titel: "Rate" }
+    ];
     const { movies, onDeletePress, onLikeClick } = this.props;
     return (
       <table className="table">
-        <thead>
+        <TableHeader
+          columns={columns}
+          handleSort={this.props.handleSort}
+          sortColumn={this.props.sortColumn}
+        />
+        {/* <thead>
           <tr>
             <th onClick={() => this.handleSort("title")}>Title</th>
             <th onClick={() => this.handleSort("genre._id")}>Genre</th>
@@ -26,7 +28,7 @@ class MovieTable extends Component {
             <th />
             <th />
           </tr>
-        </thead>
+        </thead> */}
         <tbody>
           {movies.map(movie => {
             return (
