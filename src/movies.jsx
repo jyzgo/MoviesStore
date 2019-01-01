@@ -6,7 +6,7 @@ import { getGenere } from "./services/fakeGenreService";
 import MovieRow from "./components/MovieRow";
 import Pagination from "./components/common/pagination";
 import { paginate } from "./utils/paginate";
-
+import _ from "lodash";
 class Movies extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +16,8 @@ class Movies extends Component {
     movies: [],
     genres: [],
     pageSize: 4,
-    currentPage: 1
+    currentPage: 1,
+    sortColumn: { path: "title", order: "asc" }
   };
   onDeletePress = movie => {
     removeMovie(movie);
@@ -24,9 +25,20 @@ class Movies extends Component {
   };
 
   componentDidMount() {
-    const genres = [{ name: "Allgenres" }, ...getGenere()];
+    const genres = [{ _id: "", name: "Allgenres" }, ...getGenere()];
     this.setState({ movies: getMovies(), genres });
   }
+
+  handleSort = path => {
+    const sortColumn = { ...this.state.sortColumn };
+    if (sortColumn.path === path) {
+      sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
+    } else {
+      sortColumn.path = path;
+      sortColumn.order = "asc";
+    }
+    this.setState({ sortColumn });
+  };
 
   handleGenereSelect = genre => {
     this.setState({ selectedGenere: genre, currentPage: 1 });
@@ -46,13 +58,16 @@ class Movies extends Component {
       pageSize,
       currentPage,
       genres,
+      sortColumn,
       movies: allMovies
     } = this.state;
     const filtered =
       selectedGenere && selectedGenere._id
         ? allMovies.filter(m => m.genre._id === selectedGenere._id)
         : allMovies;
-    const movies = paginate(filtered, currentPage, pageSize, selectedGenere);
+    const pag = paginate(filtered, currentPage, pageSize, selectedGenere);
+
+    const movies = _.orderBy(pag, [sortColumn.path], [sortColumn.order]);
     return (
       <div className="row">
         <div className="col-3">
@@ -67,10 +82,10 @@ class Movies extends Component {
           <table className="table">
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Genre</th>
-                <th>Stock</th>
-                <th>Rate</th>
+                <th onClick={() => this.handleSort("title")}>Title</th>
+                <th onClick={() => this.handleSort("genre._id")}>Genre</th>
+                <th onClick={() => this.handleSort("numberInstock")}>Stock</th>
+                <th onClick={() => this.handleSort("dailyRentalRate")}>Rate</th>
                 <th />
                 <th />
               </tr>
@@ -89,7 +104,7 @@ class Movies extends Component {
             </tbody>
           </table>
           <Pagination
-            itemsCount={filtered.length}
+            itemsCount={movies.length}
             onPageChange={this.handlePageChange}
             currentPage={currentPage}
             pageSize={pageSize}
