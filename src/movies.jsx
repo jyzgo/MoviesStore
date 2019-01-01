@@ -7,6 +7,7 @@ import MovieRow from "./components/MovieRow";
 import Pagination from "./components/common/pagination";
 import { paginate } from "./utils/paginate";
 import _ from "lodash";
+import MovieTable from "./components/MovieTable";
 class Movies extends Component {
   constructor(props) {
     super(props);
@@ -79,30 +80,12 @@ class Movies extends Component {
         </div>
         <div className="col">
           <h2>Showing {filtered.length} movies in database</h2>
-          <table className="table">
-            <thead>
-              <tr>
-                <th onClick={() => this.handleSort("title")}>Title</th>
-                <th onClick={() => this.handleSort("genre._id")}>Genre</th>
-                <th onClick={() => this.handleSort("numberInstock")}>Stock</th>
-                <th onClick={() => this.handleSort("dailyRentalRate")}>Rate</th>
-                <th />
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {movies.map(movie => {
-                return (
-                  <MovieRow
-                    key={movie._id}
-                    movie={movie}
-                    onDeletePress={this.onDeletePress}
-                    onLikeClick={this.onLikePress}
-                  />
-                );
-              })}
-            </tbody>
-          </table>
+          <MovieTable
+            movies={movies}
+            handleSort={this.handleSort}
+            onDeletePress={this.onDeletePress}
+            onLikeClick={this.onLikePress}
+          />
           <Pagination
             itemsCount={movies.length}
             onPageChange={this.handlePageChange}
