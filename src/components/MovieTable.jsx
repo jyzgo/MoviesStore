@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import MovieRow from "./MovieRow";
 import Like from "./common/like";
 import TableHeader from "./common/tableHeader";
 import TableBody from "./common/tableBody";
@@ -32,7 +31,7 @@ class MovieTable extends Component {
   ];
 
   render() {
-    const { movies, onDeletePress, onLikeClick } = this.props;
+    const { movies } = this.props;
     return (
       <table className="table">
         <TableHeader
