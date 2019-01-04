@@ -4,6 +4,8 @@ import Posts from "./test/posts";
 import Dashboard from "./test/dashboard";
 import Home from "./test/home";
 import { Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+
 class TestApp extends Component {
   state = {};
   render() {
@@ -11,6 +13,7 @@ class TestApp extends Component {
       <div>
         <div className="content">
           <h1> Test app </h1>
+          <NavBar />
           <Route path="/products" component={Products} />
           <Route path="/posts" component={Posts} />
           <Route path="/admin" component={Dashboard} />
