@@ -5,7 +5,7 @@ import Dashboard from "./test/dashboard";
 import Home from "./test/home";
 import { Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
-
+import ProductDetails from "./test/productDetail";
 class TestApp extends Component {
   state = {};
   render() {
@@ -14,7 +14,8 @@ class TestApp extends Component {
         <div className="content">
           <h1> Test app </h1>
           <NavBar />
-          <Route path="/products" component={Products} />
+          <Route path="/products/:id" component={ProductDetails} />
+          <Route path="/products" exact component={Products} />
           <Route path="/posts" component={Posts} />
           <Route path="/admin" component={Dashboard} />
           <Route path="/home" component={Home} />
