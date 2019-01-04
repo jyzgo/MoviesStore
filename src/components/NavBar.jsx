@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import Products from "./../test/products";
+
+import { Link } from "react-router-dom";
 
 class NavBar extends Component {
   state = {};
   render() {
     return (
       <div>
-        <a href="/home">Home</a> <br />
-        <a href="/products">Products</a> <br />
-        <a href="/posts">Posts</a> <br />
-        <a href="/admin">Admin</a> <br />
+        <Link to="/home">Home</Link> <br />
+        <Link to="/products">Products</Link> <br />
+        <Link to="/posts">Posts</Link> <br />
+        <Link to="/admin">Admin</Link> <br />
       </div>
     );
   }
