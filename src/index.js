@@ -4,8 +4,14 @@ import "./index.css";
 import Movies from "./movies";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
-
-ReactDOM.render(<Movies />, document.getElementById("root"));
+import { BrowserRouter } from "react-router-dom";
+import TestApp from "./testApp";
+ReactDOM.render(
+  <BrowserRouter>
+    <TestApp />
+  </BrowserRouter>,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
