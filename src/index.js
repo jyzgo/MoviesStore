@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Movies from "./movies";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter } from "react-router-dom";
 import TestApp from "./testApp";
 import MovieRow from "./components/MovieRow";
+import App from "./App";
 ReactDOM.render(
   <BrowserRouter>
-    <Movies />
+    <App />
   </BrowserRouter>,
   document.getElementById("root")
 );

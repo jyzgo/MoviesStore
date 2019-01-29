@@ -8,6 +8,8 @@ import Pagination from "./components/common/pagination";
 import { paginate } from "./utils/paginate";
 import _ from "lodash";
 import MovieTable from "./components/MovieTable";
+import NavbarMovie from "./components/NavbarMovie";
+
 class Movies extends Component {
   constructor(props) {
     super(props);
