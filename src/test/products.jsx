@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Product from "./product";
+import { Link } from "react-router-dom";
 class Products extends Component {
   state = {};
   list = [
@@ -12,7 +13,10 @@ class Products extends Component {
       <div>
         <h1> Product List </h1>
         {this.list.map(p => (
-          <Product key={p.id} id={p.id} name={p.name} />
+          <li key={p.id}>
+            <Link to={`/products/${p.id}`}>{p.name}</Link>
+            <Product key={p.id} id={p.id} name={p.name} />
+          </li>
         ))}
       </div>
     );
