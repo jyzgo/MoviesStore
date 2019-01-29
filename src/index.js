@@ -6,9 +6,10 @@ import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter } from "react-router-dom";
 import TestApp from "./testApp";
+import MovieRow from "./components/MovieRow";
 ReactDOM.render(
   <BrowserRouter>
-    <TestApp />
+    <Movies />
   </BrowserRouter>,
   document.getElementById("root")
 );
