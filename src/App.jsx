@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Customers from "./components/customers";
 import Rentals from "./components/rentals";
 import NavbarMovie from "./components/NavbarMovie";
@@ -10,12 +10,14 @@ class App extends Component {
     return (
       <div>
         <NavbarMovie />
-        <Switch>
-          <Route path="/movies" component={Movies} />
-          <Route path="/customers" component={Customers} />
-          <Route path="/rentals" component={Rentals} />
-          <Route path="/" compnent={Movies} />
-        </Switch>
+        <main className="container">
+          <Switch>
+            <Route path="/movies" component={Movies} />
+            <Route path="/customers" component={Customers} />
+            <Route path="/rentals" component={Rentals} />
+            <Redirect from="/" to="/movies" />
+          </Switch>
+        </main>
         {/* <Movies /> */}
       </div>
     );
