@@ -21,7 +21,6 @@ class LoginForm extends Component {
     const result = Joi.validate(this.state.account, this.schema, {
       abortEarly: false
     });
-    console.log(result);
     const errors = {};
     if (result.error) {
       for (let e of result.error.details) {
@@ -78,7 +77,9 @@ class LoginForm extends Component {
             error={errors.password}
           />
 
-          <button className="btn btn-primary">Login</button>
+          <button disabled={this.validate()} className="btn btn-primary">
+            Login
+          </button>
         </form>
       </div>
     );
