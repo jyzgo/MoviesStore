@@ -16,7 +16,7 @@ class Form extends Component {
       }
     }
 
-    console.log("err " + errors);
+    // console.log("err " + errors);
     return errors;
   };
   handleSubmit = e => {
@@ -55,7 +55,7 @@ class Form extends Component {
     );
   }
 
-  renderInput(name, label, type) {
+  renderInput(name, label, type = "text") {
     const { data, errors } = this.state;
     return (
       <Input
