@@ -3,12 +3,11 @@ import ListGroup from "./components/common/listgroup";
 import "./App.css";
 import { getMovies, removeMovie, onLikePressed } from "./services/services";
 import { getGenere } from "./services/fakeGenreService";
-import MovieRow from "./components/MovieRow";
 import Pagination from "./components/common/pagination";
 import { paginate } from "./utils/paginate";
 import _ from "lodash";
 import MovieTable from "./components/MovieTable";
-import NavbarMovie from "./components/NavbarMovie";
+import { Link } from "react-router-dom";
 
 class Movies extends Component {
   constructor(props) {
@@ -74,6 +73,13 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
+          <Link
+            to="/movies/new"
+            className="btn btn-primary"
+            style={{ marginBottom: 20 }}
+          >
+            New Movie
+          </Link>
           <h2>Showing {filtered.length} movies in database</h2>
           <MovieTable
             movies={movies}
