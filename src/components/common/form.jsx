@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Joi from "joi-browser";
 import Input from "./input";
 class Form extends Component {
-  state = {};
+  state = { data: {}, errors: {} };
 
   validate = () => {
     const { error } = Joi.validate(this.state.data, this.schema, {
@@ -55,9 +55,17 @@ class Form extends Component {
     );
   }
 
-  renderInput(name, data, onChange, error) {
+  renderInput(name, label, type) {
+    const { data, errors } = this.state;
     return (
-      <Input name={name} value={data[name]} onChange={onChange} error={error} />
+      <Input
+        name={name}
+        value={data[name]}
+        onChange={this.handleChange}
+        error={errors[name]}
+        label={label}
+        type={type}
+      />
     );
   }
 }
