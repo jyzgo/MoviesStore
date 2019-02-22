@@ -29,8 +29,8 @@ class MovieForm extends Form {
       _id: movie._id,
       title: movie.title,
       genreId: movie.genre._id,
-      numberInStock: movie.numberInStock,
-      dailyRentalRate: movie.dailiyRentalRate
+      numberInstock: movie.numberInstock,
+      dailyRentalRate: movie.dailyRentalRate
     };
   }
 
@@ -62,15 +62,14 @@ class MovieForm extends Form {
   };
 
   render() {
-    const { match, history } = this.props;
-    console.log(this.props);
+    //   console.log(this.props);
     return (
       <div>
         <h1>Movie Form </h1>
         {this.renderInput("title", "Title")}
-        {this.renderSelect("genre", "Genre", this.state.genres)}
-        {this.renderInput("numberinstock", "Number in Stock")}
-        {this.renderInput("rate", "Rate")}
+        {this.renderSelect("genreId", "Genre", this.state.genres)}
+        {this.renderInput("numberInstock", "Number in Stock")}
+        {this.renderInput("dailyRentalRate", "Rate")}
         {this.renderButton("Save")}
       </div>
     );
