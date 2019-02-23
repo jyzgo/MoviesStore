@@ -3,18 +3,15 @@ import React, { Component } from "react";
 class SearchBar extends Component {
   state = {};
 
-  handleChange = e => {
-    console.log(e.currentTarget.value);
-  };
-
   render() {
+    const { onChange } = this.props;
     return (
       <div>
         <input
           type="text"
           className="form-control"
           placeholder="Search..."
-          onChange={this.handleChange}
+          onChange={e => onChange(e.currentTarget.value)}
         />
       </div>
     );

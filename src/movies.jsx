@@ -8,7 +8,6 @@ import { paginate } from "./utils/paginate";
 import _ from "lodash";
 import MovieTable from "./components/MovieTable";
 import { Link } from "react-router-dom";
-import Input from "./components/common/input";
 import SearchBar from "./components/common/searchBar";
 
 class Movies extends Component {
@@ -21,6 +20,8 @@ class Movies extends Component {
     genres: [],
     pageSize: 4,
     currentPage: 1,
+    searchQuery: "",
+    selectedGenere: null,
     sortColumn: { path: "title", order: "asc" }
   };
   onDeletePress = movie => {
@@ -48,23 +49,56 @@ class Movies extends Component {
   handlePageChange = page => {
     this.setState({ currentPage: page });
   };
-  render() {
-    const { length: count } = this.state.movies;
+  handleSearchChange = value => {
+    console.log(value);
+    this.setState({ searchQuery: value, selectedGenere: null });
+  };
+
+  getPagedData = () => {
     const {
       selectedGenere,
       pageSize,
       currentPage,
       genres,
       sortColumn,
-      movies: allMovies
+      movies: allMovies,
+      searchQuery
     } = this.state;
-    const filtered =
-      selectedGenere && selectedGenere._id
-        ? allMovies.filter(m => m.genre._id === selectedGenere._id)
-        : allMovies;
+    let filtered = null;
+
+    if (searchQuery) {
+      filtered = allMovies.filter(m =>
+        m.title.toLowerCase().startsWith(searchQuery)
+      );
+    } else {
+      filtered =
+        selectedGenere && selectedGenere._id
+          ? allMovies.filter(m => m.genre._id === selectedGenere._id)
+          : allMovies;
+    }
     const pag = paginate(filtered, currentPage, pageSize, selectedGenere);
 
     const movies = _.orderBy(pag, [sortColumn.path], [sortColumn.order]);
+    return {
+      movies,
+      genres,
+      selectedGenere,
+      sortColumn,
+      currentPage,
+      pageSize,
+      filtered
+    };
+  };
+  render() {
+    const {
+      movies,
+      genres,
+      selectedGenere,
+      sortColumn,
+      currentPage,
+      pageSize,
+      filtered
+    } = this.getPagedData();
     return (
       <div className="row">
         <div className="col-3">
@@ -83,7 +117,8 @@ class Movies extends Component {
             New Movie
           </Link>
           <h2>Showing {filtered.length} movies in database</h2>
-          <SearchBar />
+          <SearchBar onChange={this.handleSearchChange} />
+
           <MovieTable
             movies={movies}
             sortColumn={sortColumn}
