@@ -25,7 +25,6 @@ class App extends Component {
             <Redirect from="/" to="/movies" />
           </Switch>
         </main>
-        {/* <Movies /> */}
       </div>
     );
   }

@@ -6,7 +6,7 @@ const movies = [
     _id: "1",
     title: "some",
     genre: { _id: 1, name: "Action" },
-    numberInstock: 6,
+    numberInStock: 6,
     dailyRentalRate: 2.5,
     publishDate: "2010-01-03T19:04:28.809Z",
     Like: false
@@ -15,7 +15,7 @@ const movies = [
     _id: "2",
     title: "some2",
     genre: { _id: 2, name: "Action" },
-    numberInstock: 4,
+    numberInStock: 4,
     dailyRentalRate: 2.5,
     publishDate: "2010-01-03T19:04:28.809Z",
 
@@ -25,7 +25,7 @@ const movies = [
     _id: "3",
     title: "some",
     genre: { _id: 3, name: "Action" },
-    numberInstock: 2,
+    numberInStock: 2,
     dailyRentalRate: 2.5,
     publishDate: "2010-01-03T19:04:28.809Z",
     Like: false
@@ -34,7 +34,7 @@ const movies = [
     _id: "4",
     title: "some",
     genre: { _id: 1, name: "Action" },
-    numberInstock: 6,
+    numberInStock: 6,
     dailyRentalRate: 2.5,
     publishDate: "2010-01-03T19:04:28.809Z",
     Like: false
@@ -43,7 +43,7 @@ const movies = [
     _id: "5",
     title: "some",
     genre: { _id: 1, name: "Action" },
-    numberInstock: 6,
+    numberInStock: 6,
     dailyRentalRate: 2.5,
     publishDate: "2010-01-03T19:04:28.809Z",
     Like: false
@@ -52,7 +52,7 @@ const movies = [
     _id: "6",
     title: "some",
     genre: { _id: 2, name: "Comedy" },
-    numberInstock: 6,
+    numberInStock: 6,
     dailyRentalRate: 2.5,
     publishDate: "2010-01-03T19:04:28.809Z",
     Like: false
@@ -61,7 +61,7 @@ const movies = [
     _id: "7",
     title: "s7ome",
     genre: { _id: 3, name: "Thriller" },
-    numberInstock: 6,
+    numberInStock: 6,
     dailyRentalRate: 2.5,
     publishDate: "2010-01-03T19:04:28.809Z",
     Like: false
@@ -70,7 +70,7 @@ const movies = [
     _id: "8",
     title: "some",
     genre: { _id: 1, name: "Action" },
-    numberInstock: 6,
+    numberInStock: 6,
     dailyRentalRate: 2.5,
     publishDate: "2010-01-03T19:04:28.809Z",
     Like: false
@@ -79,7 +79,7 @@ const movies = [
     _id: "9",
     title: "9some",
     genre: { _id: 2, name: "Comedy" },
-    numberInstock: 6,
+    numberInStock: 6,
     dailyRentalRate: 2.5,
     publishDate: "2010-01-03T19:04:28.809Z",
     Like: false
@@ -88,7 +88,7 @@ const movies = [
     _id: "10",
     title: "some10",
     genre: { _id: 1, name: "Action" },
-    numberInstock: 6,
+    numberInStock: 6,
     dailyRentalRate: 2.5,
     publishDate: "2010-01-03T19:04:28.809Z",
     Like: false
@@ -97,7 +97,7 @@ const movies = [
     _id: "11",
     title: "11some",
     genre: { _id: 3, name: "Thriller" },
-    numberInstock: 6,
+    numberInStock: 6,
     dailyRentalRate: 2.5,
     publishDate: "2010-01-03T19:04:28.809Z",
     Like: false
@@ -114,7 +114,7 @@ export function getMovie(id) {
 export function saveMovie(movie) {
   let movieInDb = movies.find(m => m._id === movie._id) || {};
   movieInDb.title = movie.title;
-  movieInDb.numberInstock = movie.numberInstock;
+  movieInDb.numberInStock = movie.numberInStock;
   movieInDb.dailyRentalRate = movie.dailyRentalRate;
   movieInDb.publishDate = movie.publishDate;
 }

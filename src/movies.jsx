@@ -8,6 +8,8 @@ import { paginate } from "./utils/paginate";
 import _ from "lodash";
 import MovieTable from "./components/MovieTable";
 import { Link } from "react-router-dom";
+import Input from "./components/common/input";
+import SearchBar from "./components/common/searchBar";
 
 class Movies extends Component {
   constructor(props) {
@@ -81,6 +83,7 @@ class Movies extends Component {
             New Movie
           </Link>
           <h2>Showing {filtered.length} movies in database</h2>
+          <SearchBar />
           <MovieTable
             movies={movies}
             sortColumn={sortColumn}
