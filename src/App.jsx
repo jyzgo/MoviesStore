@@ -7,11 +7,15 @@ import Movies from "./movies";
 import MovieForm from "./components/movieForm";
 import LoginForm from "./components/loginForm";
 import RegisterForm from "./components/registerForm";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 class App extends Component {
   state = {};
   render() {
+    console.log("render");
     return (
-      <div>
+      <React.Fragment>
+        <ToastContainer />
         <NavbarMovie />
         <main className="container">
           <Switch>
@@ -25,7 +29,7 @@ class App extends Component {
             <Redirect from="/" to="/movies" />
           </Switch>
         </main>
-      </div>
+      </React.Fragment>
     );
   }
 }

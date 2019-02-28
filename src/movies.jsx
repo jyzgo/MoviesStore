@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ListGroup from "./components/common/listgroup";
 import "./App.css";
 import { getMovies, removeMovie, onLikePressed } from "./services/services";
-import { getGenere } from "./services/fakeGenreService";
+import { getGenres } from "./services/genreServices";
 import Pagination from "./components/common/pagination";
 import { paginate } from "./utils/paginate";
 import _ from "lodash";
@@ -29,8 +29,9 @@ class Movies extends Component {
     this.setState({ movies: getMovies() });
   };
 
-  componentDidMount() {
-    const genres = [{ _id: "", name: "Allgenres" }, ...getGenere()];
+  async componentDidMount() {
+    const { data } = await getGenres();
+    const genres = [{ _id: "", name: "Allgenres" }, ...data];
     this.setState({ movies: getMovies(), genres });
   }
 
@@ -68,7 +69,7 @@ class Movies extends Component {
 
     if (searchQuery) {
       filtered = allMovies.filter(m =>
-        m.title.toLowerCase().startsWith(searchQuery)
+        m.title.toLowerCase().startsWith(searchQuery.toLowerCase())
       );
     } else {
       filtered =
